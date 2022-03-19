@@ -2,17 +2,9 @@ const numbers = document.querySelectorAll('.stats .number')
 const statsSection = document.getElementById("stats")
 let started = false
 
-window.onscroll = () => {
-    if (window.scrollY >= statsSection.offsetTop - 50) {
-        if (!started) {
-            numbers.forEach(ele =>  startCount(ele))
-            started = true
-        }
-    }
-}
-
 const startCount = (ele) => {
     const goal = ele.dataset.goal
+    
     let count = setInterval(() => {
         ele.textContent++;
         if (ele.textContent == goal) {
@@ -28,6 +20,12 @@ const widthSpans = document.querySelectorAll('.skills .the-progress span')
 window.onscroll = () => {
     if (window.scrollY >= skillsSection.offsetTop - 50) {
         widthSpans.forEach(span => span.style.width = span.dataset.width)
+    }
+    if (window.scrollY >= statsSection.offsetTop - 100) {
+        if (!started) {
+            numbers.forEach((ele) =>  startCount(ele))
+        }
+        started = true
     }
 }
 
